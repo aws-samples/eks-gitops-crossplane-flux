@@ -1,12 +1,16 @@
 #
+# Set these environment variables 
+#
+export CLUSTER_NAME=XXXX
+export GITHUB_TOKEN=XXXXX
+export GITHUB_USER=XXXX
+
+#
 # Bootstrapping the cluster with Flux
 # The bootstrap process will automatically create a GitRepository custom resource that points to the given repository
 # The GitRepository resource is named after the namespace where Flux GitOps ToolKit is installed. In this case, it is 'flux-system'
 # The bootstrap process will configure the repository with an SSH key for read-only access
 #
-export CLUSTER_NAME=k8s-production-cluster
-export GITHUB_TOKEN=XXXXX
-export GITHUB_USER=vijayansarathy
 kubectl create ns flux-system
 flux bootstrap github \
   --components-extra=image-reflector-controller,image-automation-controller \
@@ -17,7 +21,6 @@ flux bootstrap github \
   --path=clusters/$CLUSTER_NAME \
   --personal
 
-
 #
 # In order to authenticate with the external provider API such as AWS, the provider controllers need to have access to credentials. 
 # It could be an IAM User for AWS
@@ -25,8 +28,8 @@ flux bootstrap github \
 # We wil have to first create a configuration file, secrets.conf, with credeantials of an AWS account in the following format.
 #
 # [default]
-# aws_access_key_id = ABCDEFGHIJ0123456789
-# aws_secret_access_key = 000111r0H7yT5nGP5OPFcZJ+
+# aws_access_key_id = XXXXXXXXXXXXXXXXXXXXXXX
+# aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXX
 #
 # Then using this file, a YAML file that defines a Kubernetes Secret is created as follows
 #
