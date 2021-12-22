@@ -32,6 +32,7 @@ helm install crossplane --namespace crossplane-system crossplane-stable/crosspla
 # Providers can be installed using the 'kubectl crossplane install provider' command as well.
 # Check out documentation on installing providers: https://crossplane.io/docs/v1.3/concepts/providers.html
 #
+cd crossplane-imperative
 kubectl apply -f aws-provider.yaml 
 
 #
@@ -41,8 +42,8 @@ kubectl apply -f aws-provider.yaml
 # We wil have to first create a configuration file, secrets.conf, with credeantials of an AWS account in the following format.
 #
 # [default]
-# aws_access_key_id =ABCDEFGHIJ0123456789
-# aws_secret_access_key = Ow3HUaP8BbqkV4dUrZr0H7yT5nGP5OPFcZJ+
+# aws_access_key_id = XXXXXXXXXXXXXX
+# aws_secret_access_key = XXXXXXXXXXXXXX
 #
 # Then using that file, a Kubernetes Secret is created as follows
 #
