@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+#
+# Note that this HelmRelease is deployed on the workload cluster
+# The release itself is made in a namespace that equals to the namespace of the HelmRelease which is 'flux-system' here.
+# As this namespace should already exist, we have to create a 'flux-system' namespace on the workload cluster.
+#
+metadata:
+  name: prometheus-helmrelease
+  namespace: flux-system
+spec:
+  # install:
+  #   createNamespace: true
+  targetNamespace: monitoring
+  releaseName: prometheus-for-amp
+  interval: 5m
+  kubeConfig:
+    secretRef:
+      name: crossplane-workload-cluster-connection    
+  chart:
+    spec:
+      chart: prometheus
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+      interval: 1m
+  valuesFrom:
+  - kind: ConfigMap
+    name: prometheus-configmap
+
+

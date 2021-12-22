@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+kind: Kustomization
+metadata:
+  name: crossplane-provider-package
+  namespace: flux-system
+spec:
+  dependsOn:
+  - name: crossplane-helmrelease
+  interval: 30s
+  path: ./deploy/crossplane-aws-provider
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  healthChecks:
+  - kind: Deployment
+    name: sealed-secrets-controller
+    namespace: sealed-secrets
+  - kind: Deployment
+    name: crossplane-provider-aws-af9a74d1989f
+    namespace: crossplane-system
+  validation: client
+  timeout: 2m
+

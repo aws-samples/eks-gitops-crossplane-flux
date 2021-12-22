@@ -1,0 +1,29 @@
+serviceAccounts:
+  server:
+    name: prometheus-service-account
+    annotations: 
+      eks.amazonaws.com/role-arn: arn:aws:iam::937351930975:role/EKS-AMP-ServiceAccount-Role
+
+nodeExporter:
+    enabled: false
+alertmanager:   
+    enabled: false
+pushgateway:
+    enabled: false
+kubeStateMetrics:
+    enabled: false    
+
+server:
+    statefulSet:
+        enabled: false
+    persistentVolume:   
+        enabled: false
+        
+    remoteWrite:
+        - url: https://aps-workspaces.us-west-2.amazonaws.com/workspaces/ws-f1b785f2-4d12-40ff-b5be-132f8b8ca14b/api/v1/remote_write
+          sigv4:
+            region: us-west-2
+          queue_config:
+            max_samples_per_send: 1000
+            max_shards: 200
+            capacity: 2500            

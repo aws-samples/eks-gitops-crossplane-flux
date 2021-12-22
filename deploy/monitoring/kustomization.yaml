@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - prometheus-repository.yaml
+  - prometheus-release.yaml
+#
+# Generate a ConfigMap resources from the specified file
+# This will generate a ConfigMap which will contain a key named 'value.yaml'
+# The value associated with this key will be the contents of the file 'prometheus-nosidecar-values.yaml'
+# This ConfigMap can then be references in a HelmRelease to override the default values for a Helm chart
+#
+configMapGenerator:
+  - name: prometheus-configmap
+    namespace: flux-system
+    files:
+      - values.yaml=prometheus-values.yaml
+#
+# Trigger a Helm release upgrade everytime the values in prometheus-values.yaml change
+#
+configurations:
+  - kustomizeconfig.yaml
+

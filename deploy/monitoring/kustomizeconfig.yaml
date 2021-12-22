@@ -1,0 +1,14 @@
+#
+# It is possible to use Kustomize ConfigMap generator to trigger a Helm release upgrade every time the encoded values change.
+# First, create a kustomizeconfig.yaml for Kustomize to be able to patch ConfigMap referenced in HelmRelease manifest
+# The 'fieldSpecs/path' identifies the ConfigMap referenced in the HelmRelease.
+# Create a HelmRelease definition that references a ConfigMap
+# Create a 'kustomization.yaml' that generates the ConfigMap using the configurations from 'kustomizeconfig.yaml'
+#
+nameReference:
+- kind: ConfigMap
+  version: v1
+  fieldSpecs:
+  - path: spec/valuesFrom/name
+    kind: HelmRelease
+
