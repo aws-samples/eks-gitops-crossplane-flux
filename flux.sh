@@ -22,8 +22,7 @@ flux bootstrap github \
   --personal
 
 #
-# In order to authenticate with the external provider API such as AWS, the provider controllers need to have access to credentials. 
-# It could be an IAM User for AWS
+# In order to authenticate with the external provider API such as AWS, the Crossplane AWS provider controller need to have access to credentials. 
 # An AWS user with Administrative privileges is needed to enable Crossplane to create the required resources
 # We wil have to first create a configuration file, secrets.conf, with credeantials of an AWS account in the following format.
 #
@@ -37,19 +36,19 @@ kubectl -n crossplane-system create secret generic aws-credentials --from-file=c
 
 #
 # Next, deploy the Bitnami's Sealed Secrets controller in the 'sealed-secrets' namespace
-# Then, generate a SealedSecret corresponding to the 'aws-credentials' Secret created above. This is done using the 'kubeseal' CLI utility as shown below.
+# Then, generate a SealedSecret corresponding to the 'aws-credentials' Secret created above. This is done as shown below using the 'kubeseal' companion utility for Bitnami's Sealed Secrets.
 # The file 'aws-credentials-sealed.yaml' resulting from the operation below is the one to deploy to the management cluster in the GitOps workflow.
 # Push this file to the './deploy/crossplane-composition' directory of the GitHub repo that Flux is pointing to 
 #
 kubeseal --controller-namespace sealed-secrets --format yaml < aws-credentials.yaml > aws-credentials-sealed.yaml
 
 #
-# Important! Extract the master sealing key from the controller into a YAML file.
-# After extracting the master key, the sealed secrets controller may be termintaed.
+# Important! Extract the master sealing key from the Sealed Secrets controller into a YAML file.
+# After extracting the master key, the Sealed Secrets controller may be termintaed.
 # The controller per se will get deployed as part of the GitOps workflow. 
-# But, you must make sure that the sealing master is deployed using this file before so that all SealedSecrets that were created using this master could be unsealed
+# But you must make sure that the sealing master is deployed using this file before so that all SealedSecrets that were created using this master could be unsealed
 #
-kubectl get secret -n sealed-secrets -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > sealing-master.key
+kubectl get secret -n sealed-secrets -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > sealing-master.yaml
 
 
 #
