@@ -1,3 +1,4 @@
+```shell
 #
 # Set these environment variables 
 #
@@ -89,3 +90,6 @@ flux create kustomization applications \
   --validation=client \
   --interval=30s \
   --export > ./clusters/$CLUSTER_NAME/applications.yaml
+
+
+  ```
