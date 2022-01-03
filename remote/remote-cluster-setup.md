@@ -1,3 +1,4 @@
+```shell
 #
 # After the remote EKS cluster creation is completed using Crossplane, do the following.
 # 'kubeconfig-admin' file contains the KubeConfig data created by Crossplane when the remote cluster is provisioned.
@@ -26,3 +27,4 @@ kubectl config set-context --current --user=$SERVICE_ACCOUNT_NAME --kubeconfig=.
 # Reference this Secret in Kustomization/HelmRelease that are targeting deployments to the workload cluster
 #
 kubectl -n flux-system create secret generic crossplane-workload-cluster-sa-connection --from-file=value=./kubeconfig-sa
+```
