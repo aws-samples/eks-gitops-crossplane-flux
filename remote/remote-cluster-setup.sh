@@ -11,8 +11,8 @@ kubectl apply -f service-account-rbac.yaml --kubeconfig ./kubeconfig-admin
 #
 # After applying the above change, a service account named 'apprunner' is created in the 'applications' namespace of the remote cluster.
 # The service account is configured to have 'cluster-admin' permissions in the EKS cluster.
-# Next, create a file 'kubeconfig-sa' with the KubeConfig data that pertains to the this service account's credentials.
-# These credentials are not rotated and are permanent.
+# Next, create a file 'kubeconfig-sa' with the KubeConfig data to connect to the workload cluster using this service account's credentials.
+# These credentials are not rotataed and are permanent.
 #
 cp kubeconfig-admin kubeconfig-sa
 SERVICE_ACCOUNT_NAME=apprunner
