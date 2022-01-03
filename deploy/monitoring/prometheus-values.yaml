@@ -2,6 +2,10 @@ serviceAccounts:
   server:
     name: prometheus-service-account
     annotations: 
+      #
+      # Set this to the ARN of an IAM role for the service account.
+      # For details, refer to the documentation here: https://docs.aws.amazon.com/prometheus/latest/userguide/set-up-irsa.html
+      #
       eks.amazonaws.com/role-arn: XXXXXXXXXX
 
 nodeExporter:
@@ -20,6 +24,9 @@ server:
         enabled: false
         
     remoteWrite:
+          #
+          # Set the ID of an AMP workspace 
+          #
         - url: https://aps-workspaces.us-west-2.amazonaws.com/workspaces/XXXXXXXXXXXXX/api/v1/remote_write
           sigv4:
             region: us-west-2
