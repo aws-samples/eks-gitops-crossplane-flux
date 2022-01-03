@@ -47,7 +47,7 @@ kubeseal --controller-namespace sealed-secrets --format yaml < aws-credentials.y
 # Important! Extract the master sealing key from the Sealed Secrets controller into a YAML file.
 # After extracting the master key, the Sealed Secrets controller may be termintaed.
 # The controller per se will get deployed as part of the GitOps workflow. 
-# But you must make sure that the sealing master is deployed using this file before so that all SealedSecrets that were created using this master could be unsealed
+# But you must make sure that the sealing key is first deployed using this file so that all SealedSecrets that were created using this master could be unsealed
 #
 kubectl get secret -n sealed-secrets -l sealedsecrets.bitnami.com/sealed-secrets-key -o yaml > sealing-master.yaml
 
