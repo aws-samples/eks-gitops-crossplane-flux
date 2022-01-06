@@ -78,15 +78,13 @@ kubectl apply -f aws-providerconfig.yaml
 #
 cd eks-configuration
 kubectl crossplane build configuration
-kubectl crossplane push configuration IMAGE_REPO:IMAGE_TAG
+kubectl crossplane push configuration public.ecr.aws/awsvijisarathy/crossplane-eks-composition:6.0.0
 
 
 #
 # Install the package to a cluster 
-# Use one of the following two options to either install the one from the public repo in ECR and the one you built above.
 #
-kubectl apply -f crossplane-eks-composition.yaml
-kubectl crossplane install configuration IMAGE_REPO:IMAGE_TAG
+kubectl crossplane install configuration public.ecr.aws/awsvijisarathy/crossplane-eks-composition:2.0.0
 
 #
 # Check if the package and the XRDs defined in it were installed properly
@@ -110,9 +108,8 @@ kubectl get composite   # get all resources that represent an XR
 #
 # Cleanup
 #
-kubectl delete -f crossplane-eks-composition.yaml
+kubectl delete -f eks-cluster-xr.yaml
 kubectl delete -f aws-providerconfig.yaml
 kubectl delete -f aws-provider.yaml 
-kubectl delete -f aws-credentials.yaml
 helm uninstall crossplane --namespace crossplane-system
 
