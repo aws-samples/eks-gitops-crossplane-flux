@@ -2,7 +2,7 @@
 apiVersion: eks.sarathy.io/v1beta1
 kind: EKSCluster
 metadata:
-  name: crossplane-flux-cluster
+  name: crossplane-cluster
 spec:
   parameters:
     region: us-west-2
@@ -36,5 +36,5 @@ spec:
     name: amazon-eks-cluster
 
   writeConnectionSecretToRef:
-    namespace: eks
+    namespace: flux-system
     name: crossplane-cluster-connection

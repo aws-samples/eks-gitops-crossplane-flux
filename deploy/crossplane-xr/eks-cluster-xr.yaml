@@ -37,4 +37,4 @@ spec:
 
   writeConnectionSecretToRef:
     namespace: flux-system
-    name: crossplane-workload-cluster-connection
+    name: crossplane-flux-cluster-connection
