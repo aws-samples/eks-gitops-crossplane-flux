@@ -18,7 +18,7 @@ spec:
     name: sealed-secrets-controller
     namespace: sealed-secrets
   - kind: Deployment
-    name: crossplane-provider-aws-af9a74d1989f
+    name: crossplane-provider-aws-45985ebe751d
     namespace: crossplane-system
   validation: client
   timeout: 2m
