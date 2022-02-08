@@ -9,7 +9,7 @@ spec:
     vpc-name: "EKS-CROSSPLANE-VPC"
     vpc-cidrBlock: "192.168.48.0/20"
 
-    subnet1-public-name: "PUBLIC-WORKER-1 "
+    subnet1-public-name: "PUBLIC-WORKER-1"
     subnet1-public-cidrBlock: "192.168.48.0/24"
     subnet1-public-availabilityZone: "us-west-2a"
     
@@ -25,7 +25,7 @@ spec:
     subnet2-private-cidrBlock: "192.168.51.0/24"
     subnet2-private-availabilityZone: "us-west-2b"     
 
-    cluster-role: arn:aws:iam::XXXXX:role/EKS-Cluster-Role
+    cluster-role: arn:aws:iam::XXXX:role/EKS-Cluster-Role
     workernode-role: arn:aws:iam::XXXX:role/EKS-WorkerNode-Role
 
     k8s-version: "1.21"
@@ -37,4 +37,4 @@ spec:
 
   writeConnectionSecretToRef:
     namespace: eks
-    name: crossplane-prod-cluster-connection
+    name: crossplane-cluster-connection
