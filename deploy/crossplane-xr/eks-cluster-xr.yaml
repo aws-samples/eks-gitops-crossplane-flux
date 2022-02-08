@@ -6,24 +6,24 @@ metadata:
 spec:
   parameters:
     region: us-west-2
-    vpc-name: "crossplane-flux-vpc"
-    vpc-cidrBlock: "10.20.0.0/16"
+    vpc-name: "EKS-CROSSPLANE-FLUX-VPC"
+    vpc-cidrBlock: "192.168.48.0/20"
 
-    subnet1-public-name: "public-worker-1 "
-    subnet1-public-cidrBlock: "10.20.1.0/28"
+    subnet1-public-name: "PUBLIC-WORKER-1 "
+    subnet1-public-cidrBlock: "192.168.48.0/24"
     subnet1-public-availabilityZone: "us-west-2a"
     
-    subnet2-public-name: "public-worker-2"
-    subnet2-public-cidrBlock: "10.20.2.0/28"
+    subnet2-public-name: "PUBLIC-WORKER-2"
+    subnet2-public-cidrBlock: "192.168.49.0/24"
     subnet2-public-availabilityZone: "us-west-2b"    
 
-    subnet1-private-name: "private-worker-1 "
-    subnet1-private-cidrBlock: "10.20.11.0/28"
+    subnet1-private-name: "PRIVATE-WORKER-1"
+    subnet1-private-cidrBlock: "192.168.50.0/24"
     subnet1-private-availabilityZone: "us-west-2a"
     
-    subnet2-private-name: "private-worker-2"
-    subnet2-private-cidrBlock: "10.20.12.0/28"
-    subnet2-private-availabilityZone: "us-west-2b"     
+    subnet2-private-name: "PRIVATE-WORKER-2"
+    subnet2-private-cidrBlock: "192.168.51.0/24"
+    subnet2-private-availabilityZone: "us-west-2b"    
 
     cluster-role: "arn:aws:iam::XXXXXXXX:role/EKS-Cluster-Role"
     workernode-role: "arn:aws:iam::XXXXXXXX:role/EKS-WorkerNode-Role"
